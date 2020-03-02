@@ -1,0 +1,6 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /spring-boot-demo
+logging:
+  file: /home/kk/spring-boot-demo.log
