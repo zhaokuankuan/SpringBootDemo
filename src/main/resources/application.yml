@@ -4,3 +4,16 @@ server:
     context-path: /spring-boot-demo
 logging:
   file: /home/kk/spring-boot-demo.log
+spring:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: adminadmin
+    timeout: 3000ms
+    database: 0
+#    lettuce:
+#      pool:
+#        max-active: 10
+#        max-idle: 8
+#        max-wait: 3000ms
+#        min-idle: 0
