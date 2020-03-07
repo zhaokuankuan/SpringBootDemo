@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kk.demo.dao.UserMapper">
+
+    <resultMap id="User" type="com.kk.demo.domain.User" >
+        <result column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="age" property="age" />
+    </resultMap>
+
+    <insert id="insert" parameterType="java.util.Map" >
+        INSERT INTO user (
+        `id`,
+        `username`,
+        `age`
+        )
+        VALUES(
+        #{user.id},
+        #{user.username},
+        #{user.age}
+        )
+    </insert>
+
+
+</mapper>

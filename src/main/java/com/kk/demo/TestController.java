@@ -1,9 +1,15 @@
 package com.kk.demo;
 
 import com.kk.demo.common.RedisUtils;
+import com.kk.demo.domain.User;
+import com.kk.demo.service.TestJtaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.transaction.Transactional;
 
 /**
  * @author :Mr.kk
@@ -13,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    RedisUtils redisUtils;
+    private RedisUtils redisUtils;
+    @Autowired
+    private TestJtaService testJtaService;
 
 
     @GetMapping("/testSpringBootDemo")
@@ -32,4 +40,26 @@ public class TestController {
     public Object getRedis(String key){
         return redisUtils.getString(key);
     }
+
+    @PostMapping("/insertOne")
+    public Object insertOne(@RequestBody User user){
+        return testJtaService.testInsertUser(user);
+    }
+
+    @PostMapping("/insertTwo")
+    @Transactional
+    public Object insertTwo(@RequestBody User user){
+        Object res = testJtaService.testInsertUser2(user);
+        return res;
+    }
+
+    @PostMapping("/testRollBack")
+    public Object testRollBack(@RequestBody User user){
+        Object res = testJtaService.testInsertUser2(user);
+        Object res1 = testJtaService.testInsertUser(user);
+        return res;
+    }
+
+
+
 }
